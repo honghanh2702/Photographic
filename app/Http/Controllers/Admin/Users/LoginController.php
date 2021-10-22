@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Users;
 use App\Http\Controllers\Controller;
 use App\Models\c;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -15,7 +17,9 @@ class LoginController extends Controller
      */
     public function index()
     {
-        echo 123;
+        return view('DangNhap', [
+            'title'=> "Đăng Nhập"
+        ]);
     }
 
     /**
@@ -23,10 +27,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function loginform(Request $request){
-        echo $request->username;
 
-    }
     public function create()
     {
         //
@@ -40,8 +41,24 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->input());
+        $this->validate($request, [
+            'email'=>'required|email:filter',
+            'password'=>'required'
+        ]);
+        $credentials=['email' => $request->input('email'),'password'=>$request->input('password')];
+        if (Auth::attempt($credentials)) {
+            // $request->session()->flash('success','Ban da dang nhap thanh cong');
+            $sql = DB::table('users')->where('email',$request->input('email'))->get();
+            session(['users'=>$sql[0]]);
+            return redirect()-> route('main');
+        }
+        // session()->flash('error', 'email hoac mat khau khong dung');
+        // $request->session()->flash('error', 'Email hoac mat khau khong dung!');
+        $request->Session()->flash('err', 'Email hoặc Password bạn nhập chưa đúng');
+        return redirect()->back();
     }
+
 
     /**
      * Display the specified resource.
@@ -49,6 +66,9 @@ class LoginController extends Controller
      * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
+    public function signup(){
+        return view('DangKy');
+    }
     public function show(c $c)
     {
         //
