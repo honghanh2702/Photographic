@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('users/demo',[LoginController::class,'demo']);
 Route::get('admin/users/login',[LoginController::class,'index'])->name('DangNhap');
 Route::get('signup',[LoginController::class,'signup']);
+Route::post('processSignup',[LoginController::class,'processSignup'])->name('process');
 Route::post('admin/users/login/store',[LoginController::class,'store']);
 Route::get('admin/main',[MainController::class,'index'])->name('main');
-Route::get('users',[MainController::class,'users']);
+Route::get('users',[MainController::class,'users'])->name('users');
 Route::get('admin/users/crawn',[CrawnCotroller::class,'crawn']);
 Route::get('test',[CrawnCotroller::class,'test']);
 

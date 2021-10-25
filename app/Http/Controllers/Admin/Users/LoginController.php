@@ -15,6 +15,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function demo(){
+         return view('demo');
+     }
     public function index()
     {
         return view('DangNhap', [
@@ -66,12 +70,30 @@ class LoginController extends Controller
      * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function signup(){
+    public function signup( Request $request){
         return view('DangKy');
     }
-    public function show(c $c)
-    {
-        //
+    public function processSignup(Request $request){
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required|email:filter',
+            'password'=>'required'
+        ]);
+        $check = DB::table('users')->where("email",$request->input("email"))->get();
+        // echo count($check);
+        // dd($check);
+        if(count($check)!=0){
+            $request->Session()->flash('err','Email đã tồn tại');
+            return redirect()->back();
+
+        }
+        $process=['name'=>$request->input("name"),'email'=>$request->input("email"),'password'=> bcrypt($request->input("password"))];
+        $sql=DB::table('users')->insert($process);
+        // dd($sql);
+        if($sql){
+            return redirect()->route('DangNhap');
+        }else
+            return redirect()->back();
     }
 
     /**

@@ -14,12 +14,17 @@
     <body class="text-dark" id="bgImage">
         <div class="bg-white text-center p-5 ml-auto mx-auto login-box radius-10 margin-auto">
             <h1 class="mt-1">ĐĂNG KÝ</h1>
-            <form action="#" method="POST" class="mt-5">
-                <input type="text" id="taikhoanmoi" name="taikhoanmoi" placeholder="Email" class="form-control pl-3 pr-2 my-2 mx-auto width-300">
-                <input type="password" id="matkhaumoi" name="matkhaumoi" placeholder="Mật khẩu mới"
+            <form action="{{ route('process') }}" method="POST" class="mt-5">
+                @csrf
+                @include("alert")
+                Name: <input type="text" id="tentaikhoan" name="name" placeholder="name" class="form-control pl-3 pr-2 my-2 mx-auto width-300">
+               Email: <input type="text" id="taikhoanmoi" name="email" placeholder="Email" class="form-control pl-3 pr-2 my-2 mx-auto width-300">
+                Password: <input type="password" id="matkhaumoi" name="password" placeholder="Password"
                         class="form-control pl-3 pr-2 my-2 mx-auto width-300">
-                <input type="date" id="ngaysinh" name="ngaysinh" class="form-control pl-3 pr-2 my-2 mx-auto width-300"
-                        data-toggle="tooltip" title="Thiết lập ngày sinh của bạn">
+                {{-- <input type="date" id="ngaysinh" name="ngaysinh" class="form-control pl-3 pr-2 my-2 mx-auto width-300"
+                        data-toggle="tooltip" title="Thiết lập ngày sinh của bạn"> --}}
+                        Confirm Password :<input type="password" id="matkhaumoi" name="Confirm Password" placeholder="Confirm Password"
+                        class="form-control pl-3 pr-2 my-2 mx-auto width-300">
                 <div><button type="submit" class="btn border-none pt-1 pb-2 width-300 btn-1 btn-gray"><b>Tiếp tục</b></button></div>
             </form>
             <div class="mt-3"><b>Hoặc đăng ký bằng</b><br>

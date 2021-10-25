@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/myStyle.css">
         <link rel="stylesheet" href="/css/gallery.css">
+        <link rel="stylesheet" href="/css/hanhStyle.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
             integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,17 +49,17 @@
                 <i class="fas fa-comment-dots"></i>
             </a>
             <!-- Nút avatar -->
-            <a href="BangTinCaNhan.html" id="avatar" class="btn rounded-circle float-left p-0 ml-2 mr-3" style="margin-top:13px;padding-top:0;">
-                <img src="{{ session()->get('users')->img; }}"  alt="taeyeon.jpg" class="rounded-circle m-0" style="#">
+            <a href="{{ route('users') }}" id="avatar" class="btn rounded-circle float-left p-0 ml-2 mr-3" style="margin-top:13px;padding-top:0;">
+                <img src="{{ session()->get('users')->img; }}"  alt="" class="rounded-circle m-0" style="#">
             </a>
             <!-- Nút dropdown -->
             <div class="dropdown float-left px-0 pt-3 bg-light">
                 <button class="btn btn-light rounded-circle dropdown-toggle" type="button" data-toggle="dropdown"></button>
                 <ul class="dropdown-menu dropdown-menu-right radius-10 py-3 bg-light" style="rigth:0;width:350px;">
                     <!-- Bảng tin cá nhân -->
-                    <li class="mx-3"><a href="BangTinCaNhan.html"><div class="radius-10 py-1 list-item-1">
+                    <li class="mx-3"><a href="{{ route('users') }}"><div class="radius-10 py-1 list-item-1">
                         <div class="mr-3">
-                            <img src="{{ session()->get('users')->img; }}" alt="taeyeon.jpg" style="width:80px;height:80px;" class="rounded-circle">
+                            <img src="{{ session()->get('users')->img; }}" alt="" style="width:80px;height:80px;" class="rounded-circle">
                         </div>
                         <div style="width:250px;" class="pt-2">
                             <div class="mt-1"><b>{{session()->get('users')->name;}}</b></div>
@@ -85,9 +86,8 @@
                     <!-- Đăng xuất -->
                     <li class="mx-3"><a href="{{ route('DangNhap') }}"><div class="radius-10 py-0 list-item-1">
                         <div class="mr-1">
-                            <div class="rounded-circle" id="button1"><i class="fas fa-sign-out-alt"></i></div>
+                            <div class="rounded-circle" id="button1"><i style="font-size: 1.5em;" class="fas fa-sign-out-alt"></i><b>Đăng xuất</b></div>
                         </div>
-                        <div class="pt-2"><b>Đăng xuất</b></div>
                     </div></a></li>
                     <li class="dropdown-divider mx-3"></li>
                     <!-- Giới thiệu -->
@@ -104,6 +104,21 @@
         <div class="container-fluid">
             <div class="row" id="hanh">
                 <div class="col-md-2" id="col1">
+                    <div class="parentContainer" onmouseout="onhoverOut(this)" onmouseover="onhoverIn(this)">
+                        <img src="/img/1.jpg" alt="">
+                        <div>
+
+                        </div>
+                    </div>
+                    <script>
+                        const onhoverIn = (e)=>{
+                            console.log("over");
+
+                        }
+                        const onhoverOut = (e)=>{
+                            console.log("out");
+                        }
+                    </script>
                 </div>
                 <div class="col-md-2" id="col2">
 
